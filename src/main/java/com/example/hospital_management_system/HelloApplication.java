@@ -28,9 +28,19 @@ public class HelloApplication extends Application {
     boolean isClicked = false;//Used for making sure same button is not clicked twice
     int []num = new int[3];//Used for assigning ID
     //color and BackGround
-    Color customColor = Color.rgb(46, 51, 71);
+    Color customColor = Color.web("#1a1a1a");
     BackgroundFill backgroundFill = new BackgroundFill(customColor, null, null);
     Background background = new Background(backgroundFill);
+
+    private void applyStyles(Scene scene) {
+        try {
+            String css = getClass().getResource("styles.css").toExternalForm();
+            if (!scene.getStylesheets().contains(css)) {
+                scene.getStylesheets().add(css);
+            }
+        } catch (Exception ignored) {
+        }
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -45,9 +55,9 @@ public class HelloApplication extends Application {
         setStyling(loginB1, 90, 25);
         Button loginb1 = new Button("Login");
         setStyling(loginb1, 90, 25);
-        Label login1 = new Label("Enter UserName : ");
+        Label login1 = new Label(" ");
         login1.setStyle("-fx-text-fill: white;  -fx-font-weight: bold;");
-        Label login2 = new Label("Enter Password : ");
+        Label login2 = new Label(" ");
         login2.setStyle("-fx-text-fill: white;  -fx-font-weight: bold;");
         Button loginb2 = new Button("Register");
         setStyling(loginb2, 90, 25);
@@ -69,6 +79,7 @@ public class HelloApplication extends Application {
         loginPane.setAlignment(Pos.BASELINE_CENTER);//setting alignment
         loginPane.setVgap(35);//setting vertical gap
         s1 = new Scene(loginPane, 900, 650); //creating the first scene of the System
+        applyStyles(s1);
         loginB1.setOnAction(new EventHandler<ActionEvent>() {//this button logs in the user
             @Override
             public void handle(ActionEvent event) {
@@ -127,6 +138,7 @@ public class HelloApplication extends Application {
         registerPane.setHgap(7);
         registerPane.setBackground(background);
         RegisterScene = new Scene(registerPane, 900, 650);
+        applyStyles(RegisterScene);
         registerBack.setOnAction(e -> {
             stage.setScene(s1);
         });
@@ -213,6 +225,7 @@ public class HelloApplication extends Application {
         VBox docPatientsViewVbox = new VBox(docPatientsView, docPatientsViewHbox);
         docPatientsViewVbox.setBackground(background);
         Scene docPatientViewScene = new Scene(docPatientsViewVbox, 900, 650);
+        applyStyles(docPatientViewScene);
         Label docPrescriptionl1 = new Label("Patient:");
         docPrescriptionl1.setFont(Font.font("Times New Roman", 12));
         docPrescriptionl1.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
@@ -237,6 +250,7 @@ public class HelloApplication extends Application {
         docPrescriptionpane.setAlignment(Pos.CENTER);
         docPrescriptionpane.setBackground(background);
         Scene writePrescriptionScene = new Scene(docPrescriptionpane, 900, 650);
+        applyStyles(writePrescriptionScene);
         doctorMenu1.setOnAction(e ->
         {
             updatePatientList(docPatientslist, CurrentUser);
@@ -305,6 +319,7 @@ public class HelloApplication extends Application {
                         VBox presv = new VBox(prestableView, presh2);
                         presv.setBackground(background);
                         Scene press = new Scene(presv, 900, 650);
+                        applyStyles(press);
                         stage.setScene(press);
 
                         presb.setOnAction(a -> stage.setScene(docPatientViewScene));
@@ -337,6 +352,7 @@ public class HelloApplication extends Application {
                                 Db.setOnAction(d -> stage.setScene(press));
                                 // Create a scene and set it on the stage
                                 Scene scene = new Scene(v, 900, 650);
+                                applyStyles(scene);
                                 stage.setScene(scene);
                             } catch (NoOptionSelectedException exception) {
                                 throwAlert("Error");
@@ -447,6 +463,7 @@ public class HelloApplication extends Application {
                 }
             });
             Scene scene = new Scene(v, 900, 650);
+            applyStyles(scene);
             stage.setScene(scene);
             b1.setOnAction(a -> stage.setScene(DoctorMenuScene));
         });
@@ -460,6 +477,7 @@ public class HelloApplication extends Application {
             }
         });
         DoctorMenuScene = new Scene(dMenuPane, 900, 650);
+        applyStyles(DoctorMenuScene);
 
         Button patientb1 = new Button("View Current Info");
         setStyling(patientb1, 140, 40);
@@ -488,6 +506,7 @@ public class HelloApplication extends Application {
         patientMenu.setVgap(30);
         patientMenu.setHgap(25);
         PatientMenuScene = new Scene(patientMenu, 900, 650);
+        applyStyles(PatientMenuScene);
         //Buttons for Patient Menu
         patientb8.setOnAction(e -> {
             changePassword(CurrentUser, stage, PatientMenuScene);
@@ -529,6 +548,7 @@ public class HelloApplication extends Application {
             patientCurrentInfoGrid.setBackground(background);
             patientCurrentInfoGrid.setAlignment(Pos.CENTER);
             Scene patientCurrentInfoScene = new Scene(patientCurrentInfoGrid, 900, 650);
+            applyStyles(patientCurrentInfoScene);
             patientCurrentInfoBtn.setOnAction(a -> stage.setScene(PatientMenuScene));
             stage.setScene(patientCurrentInfoScene);
         });
@@ -556,6 +576,7 @@ public class HelloApplication extends Application {
             pview.setBackground(background);
             pview.refresh();
             Scene scene = new Scene(v, 900, 650);
+            applyStyles(scene);
             stage.setScene(scene);
             print.setOnAction(a->{
                 try{
@@ -594,6 +615,7 @@ public class HelloApplication extends Application {
                     Db.setOnAction(d -> stage.setScene(scene));
                     // Create a scene and set it on the stage
                     Scene prescriptionscene = new Scene(v1, 900, 650);
+                    applyStyles(prescriptionscene);
                     stage.setScene(prescriptionscene);
                 } catch (NoOptionSelectedException exception) {
                     throwAlert("Select an Option first");
@@ -617,6 +639,7 @@ public class HelloApplication extends Application {
         patientBillpane.setHgap(7);
         patientBillpane.setAlignment(Pos.CENTER);
         Scene patientBillScene = new Scene(patientBillpane, 900, 650);
+        applyStyles(patientBillScene);
         patientb4.setOnAction(e -> {
             stage.setScene(patientBillScene);
             billGoback.setOnAction(a -> {
@@ -640,6 +663,7 @@ public class HelloApplication extends Application {
         VBox viewAllDocVbox = new VBox(allDoctorsview);
         viewAllDocVbox.setBackground(background);
         Scene viewAllDocScene = new Scene(viewAllDocVbox, 900, 650);
+        applyStyles(viewAllDocScene);
         Button viewAllDocsb1 = new Button("Back");
         setStyling(viewAllDocsb1, 90, 25);
         Button viewAllDocsb2 = new Button();
@@ -769,6 +793,7 @@ public class HelloApplication extends Application {
         addDocPane.add(addDocb2, 4, 8);
         addDocPane.setAlignment(Pos.CENTER);
         Scene addDocScene = new Scene(addDocPane, 900, 650);
+        applyStyles(addDocScene);
         addDocb1.setOnAction(e -> {
             try {
                 if (addDocT1.getText().isEmpty() || addDocT3.getText().isEmpty() || addDocT4.getText().isEmpty())
@@ -823,6 +848,7 @@ public class HelloApplication extends Application {
         saPane.setHgap(10);
         ScheduleAppointmentb2.setOnAction(e -> stage.setScene(AdminMenuScene));
         Scene ScheduleapScene = new Scene(saPane, 900, 650);
+        applyStyles(ScheduleapScene);
         Adminb2.setOnAction(e -> {
             stage.setScene(ScheduleapScene);
         });
@@ -916,6 +942,7 @@ public class HelloApplication extends Application {
         viewAllPatientsVbox.setBackground(background);
         //creating the scene for the table
         Scene viewAllPatient = new Scene(viewAllPatientsVbox, 900, 650);
+        applyStyles(viewAllPatient);
         System.out.println("Before: " + patientsList.size());
 // Add or remove patients here
 
@@ -1106,7 +1133,9 @@ public class HelloApplication extends Application {
         InvoVerticalBox.setBackground(background);
         invoOptions.setSpacing(10);
         Scene InvoScene2 = new Scene(InvoVerticalBox, 900, 650);
+        applyStyles(InvoScene2);
         AdminMenuScene = new Scene(AdminMenu, 900, 650);
+        applyStyles(AdminMenuScene);
         //setting functionality on all the buttons of the scene
         Adminb3.setOnAction(e -> stage.setScene(InvoScene2));
         Invob2.setOnAction(e -> {
@@ -1283,6 +1312,7 @@ public class HelloApplication extends Application {
             v.setBackground(background);
             v.setSpacing(5);
             Scene patientInventory = new Scene(v, 900, 650);
+            applyStyles(patientInventory);
             stage.setScene(patientInventory);
             b2.setOnAction(a -> {
                 stage.setScene(PatientMenuScene);
@@ -1381,15 +1411,14 @@ public class HelloApplication extends Application {
     }
 
     public void setStyling(Button button, int sizeX, int sizeY) {
-        button.setStyle("-fx-background-color: #2497F0 ; -fx-text-fill: white;");
+        String base = "-fx-background-color: linear-gradient(to bottom right, #4F46E5, #06B6D4); -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 10 16; -fx-font-weight: 700; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 12, 0.0, 0, 4);";
+        String hover = "-fx-background-color: linear-gradient(to bottom right, #6366F1, #22D3EE); -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 10 16; -fx-font-weight: 700; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 12, 0.0, 0, 4);";
+        button.setStyle(base);
         button.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         button.setMinSize(sizeX, sizeY);
 
-        Stream.of(button)
-                .forEach(btn -> {
-                    button.setOnMouseEntered(e -> button.setStyle("-fx-background-color: #6A92CC; -fx-text-fill: white;"));
-                    button.setOnMouseExited(e -> button.setStyle("-fx-background-color: #2497F0 ; -fx-text-fill: white;"));
-                });
+        button.setOnMouseEntered(e -> button.setStyle(hover));
+        button.setOnMouseExited(e -> button.setStyle(base));
     }
 
     //method to intitalize all the users and beds and inventory will not be used after file handling
@@ -1425,6 +1454,7 @@ public class HelloApplication extends Application {
         });
         g.setAlignment(Pos.CENTER);
         Scene scene = new Scene(g, 900, 650);
+        applyStyles(scene);
         stage.setScene(scene);
 
     }

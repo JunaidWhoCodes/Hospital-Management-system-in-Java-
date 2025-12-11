@@ -1,0 +1,182 @@
+/* Tailwind-inspired, true-black UI theme */
+
+/* Base */
+.root {
+  /* Standard CSS for compatibility with some validators */
+  font-family: "Segoe UI", "Inter", "Arial", sans-serif;
+  font-size: 14px;
+  background-color: #1a1a1a; /* charcoal */
+  /* JavaFX CSS */
+  -fx-font-family: "Segoe UI", "Inter", "Arial", sans-serif;
+  -fx-font-size: 14px;
+  -fx-background-color: #1a1a1a; /* charcoal */
+}
+
+/* Containers (apply spacing/padding rhythm similar to Tailwind) */
+.grid-pane, .vbox, .hbox, .border-pane, .stack-pane, .anchor-pane {
+  background-color: #1a1a1a; /* charcoal */
+  padding: 16px;
+  -fx-background-color: #1a1a1a; /* charcoal */
+  -fx-padding: 16; /* p-4 */
+}
+
+/* Card blocks for grouping sections */
+.card {
+  background-color: #0a0a0a;
+  border-color: #1f2937;
+  border-radius: 12px;
+  border-width: 1px;
+  padding: 16px;
+  -fx-background-color: #0a0a0a; /* neutral-950 */
+  -fx-background-radius: 12; /* rounded-xl */
+  -fx-padding: 16; /* p-4 */
+  -fx-border-color: #1f2937; /* slate-800 */
+  -fx-border-radius: 12;
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 20, 0.0, 0, 6);
+}
+
+/* Headers */
+.header-title {
+  color: #fafafa;
+  font-size: 18px;
+  font-weight: 700;
+  -fx-text-fill: #fafafa; /* neutral-50 */
+  -fx-font-size: 18px; /* text-lg */
+  -fx-font-weight: 700; /* font-bold */
+}
+.subheader {
+  color: #a3a3a3;
+  font-size: 13px;
+  -fx-text-fill: #a3a3a3; /* neutral-400 */
+  -fx-font-size: 13px;
+}
+
+/* Labels */
+.label {
+  color: #e5e5e5;
+  font-size: 14px;
+  -fx-text-fill: #e5e5e5; /* neutral-200 */
+  -fx-font-size: 14px;
+}
+
+/* Buttons (primary) */
+.button {
+  color: white;
+  font-weight: 700;
+  padding: 10px 16px;
+  background: linear-gradient(to bottom right, #2563eb, #22d3ee);
+  -fx-text-fill: white;
+  -fx-background-radius: 12; /* rounded-xl */
+  -fx-padding: 10 16; /* px-4 py-2.5 */
+  -fx-font-weight: 700; /* font-bold */
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 16, 0.0, 0, 6);
+}
+.button:hover {
+  background: linear-gradient(to bottom right, #3b82f6, #67e8f9);
+  -fx-background-color: linear-gradient(to bottom right, #3b82f6, #67e8f9);
+}
+.button:pressed {
+  background: linear-gradient(to bottom right, #1d4ed8, #06b6d4);
+  -fx-background-color: linear-gradient(to bottom right, #1d4ed8, #06b6d4);
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: #171717;
+  color: #e5e5e5;
+  border-color: #27272a;
+  border-width: 1px;
+  -fx-background-color: #171717; /* neutral-900 */
+  -fx-text-fill: #e5e5e5;
+  -fx-background-radius: 12;
+  -fx-border-color: #27272a; /* zinc-800 */
+  -fx-border-width: 1;
+}
+.btn-secondary:hover {
+  background-color: #1f1f1f;
+  -fx-background-color: #1f1f1f;
+}
+
+/* Inputs */
+.text-field, .password-field {
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  border-color: #262626;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  -fx-background-color: #0a0a0a; /* neutral-950 */
+  -fx-text-fill: #f5f5f5; /* neutral-100 */
+  -fx-prompt-text-fill: #737373; /* neutral-500 */
+  -fx-background-radius: 10; /* rounded-lg */
+  -fx-border-radius: 10;
+  -fx-border-color: #262626; /* neutral-800 */
+  -fx-border-width: 1;
+  -fx-padding: 10 12; /* px-3 py-2.5 */
+}
+.text-field:focused, .password-field:focused {
+  border-color: #22d3ee;
+  -fx-border-color: #22d3ee; /* cyan-400 */
+  -fx-effect: dropshadow(gaussian, rgba(34, 211, 238, 0.35), 12, 0.0, 0, 0);
+}
+
+/* TableView */
+.table-view {
+  background-color: transparent;
+  border-color: #262626;
+  border-width: 1px;
+  -fx-background-color: transparent;
+  -fx-background-radius: 12;
+  -fx-border-radius: 12;
+  -fx-border-color: #262626; /* neutral-800 */
+  -fx-border-width: 1;
+}
+.table-view .column-header-background {
+  background-color: #0a0a0a;
+  -fx-background-color: #0a0a0a; /* neutral-950 */
+  -fx-background-radius: 12 12 0 0;
+}
+.table-view .column-header, .table-view .filler {
+  -fx-size: 40px;
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+}
+.table-view .table-row-cell {
+  -fx-background-color: transparent;
+}
+.table-view .table-row-cell:odd {
+  background-color: #0b0b0b;
+  -fx-background-color: #0b0b0b;
+}
+.table-view .table-row-cell:selected {
+  background-color: #2563eb;
+  -fx-background-color: #2563eb; /* indigo-600 */
+  -fx-text-fill: white;
+}
+.table-view .table-cell {
+  color: #d4d4d4;
+  -fx-text-fill: #d4d4d4; /* neutral-300 */
+}
+
+/* Scroll panes */
+.scroll-pane, .scroll-pane > .viewport {
+  background-color: transparent;
+  -fx-background-color: transparent;
+}
+
+/* Spacing utilities (Tailwind-like) */
+.space-y-2 > * { -fx-margin: 4 0 0 0; }
+.space-y-3 > * { -fx-margin: 8 0 0 0; }
+.space-y-4 > * { -fx-margin: 12 0 0 0; }
+.space-y-6 > * { -fx-margin: 16 0 0 0; }
+.p-4 { -fx-padding: 16; }
+.p-6 { -fx-padding: 24; }
+.space-y-2 > * { margin: 4px 0 0 0; -fx-margin: 4 0 0 0; }
+.space-y-3 > * { margin: 8px 0 0 0; -fx-margin: 8 0 0 0; }
+.space-y-4 > * { margin: 12px 0 0 0; -fx-margin: 12 0 0 0; }
+.space-y-6 > * { margin: 16px 0 0 0; -fx-margin: 16 0 0 0; }
+.p-4 { padding: 16px; -fx-padding: 16; }
+.p-6 { padding: 24px; -fx-padding: 24; }
+.rounded-lg { -fx-background-radius: 10; }
+.rounded-xl { -fx-background-radius: 12; }
